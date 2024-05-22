@@ -71,6 +71,10 @@ public class Accounts {
         this.user = user;
     }
 
+    public void setUserId(Long userId) {
+        this.user.setId(userId);
+    }
+
     public List<Transactions> getSentTransactions() {
         return sentTransactions;
     }

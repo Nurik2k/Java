@@ -3,6 +3,7 @@ package com.example.bank.service;
 import com.example.bank.entity.Accounts;
 import com.example.bank.entity.Users;
 import com.example.bank.repository.AccountRepository;
+import com.example.bank.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountService {
     private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
 
-    public Accounts createAccount(Accounts account) {
+    public Accounts createAccount(Long userId) {
         try {
-            return accountRepository.save(account);
+            Users user = userRepository.findById(userId).orElse(null);
+            Accounts account = new Accounts();
+            account.setUser(user);
+            account.setBalance(BigDecimal.ZERO);
+            account.setAccountNumber(generateAccountNumber());
+            accountRepository.save(account);
+            return account;
+
         } catch (Exception e) {
             return null;
         }
@@ -73,4 +82,10 @@ public class AccountService {
             e.printStackTrace();
         }
     }
+
+    private String generateAccountNumber() {
+        // Simple account number generation logic for demo purposes
+        return "AC" + System.currentTimeMillis();
+    }
+
 }

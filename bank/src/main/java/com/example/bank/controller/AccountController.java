@@ -20,8 +20,8 @@ public class AccountController {
     }
 
     @PostMapping("/")
-    public Accounts createAccount(@RequestBody Accounts account) {
-        return accountService.createAccount(account);
+    public Accounts createAccount(@RequestParam Long userId) {
+        return accountService.createAccount(userId);
     }
 
     @GetMapping("/user")

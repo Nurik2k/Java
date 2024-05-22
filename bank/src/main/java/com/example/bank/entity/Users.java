@@ -25,10 +25,6 @@ public class Users {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    @JsonManagedReference
-    private List<Accounts> accounts;
-
     public Long getId() {
         return id;
     }
@@ -59,13 +55,5 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Accounts> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Accounts> accounts) {
-        this.accounts = accounts;
     }
 }
