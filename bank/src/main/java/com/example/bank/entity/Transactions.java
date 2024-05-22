@@ -14,8 +14,8 @@ import java.util.List;
 @Table(name = "transactions")
 public class Transactions {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -28,13 +28,13 @@ public class Transactions {
     @JoinColumn(name = "receiver_account_id")
     private Accounts receiverAccount;
 
-    @Column(name = "amount", nullable = false)
+    @Column(name = "amount")
     private BigDecimal amount;
 
-    @Column(name = "transaction_date", nullable = false)
+    @Column(name = "transaction_date")
     private LocalDateTime transactionDate;
 
-    @Column(name = "transaction_type", nullable = false)
+    @Column(name = "transaction_type")
     private String transactionType;
 
     public Accounts getSenderAccount() {

@@ -14,14 +14,14 @@ import java.util.List;
 @Table(name = "accounts")
 public class Accounts {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "account_number", nullable = false)
+    @Column(name = "account_number")
     private String accountNumber;
 
-    @Column(name = "balance", nullable = false)
+    @Column(name = "balance")
     private BigDecimal balance;
 
     @ManyToOne
