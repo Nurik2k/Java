@@ -3,6 +3,7 @@ package com.example.tasks_api.controller;
 import com.example.tasks_api.entity.Task;
 import com.example.tasks_api.enums.TaskStatus;
 import com.example.tasks_api.service.TaskService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
+@RequiredArgsConstructor
 public class TaskController {
     private static final Logger log = LoggerFactory.getLogger(TaskController.class);
-    @Autowired
-    private TaskService taskService;
+
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
